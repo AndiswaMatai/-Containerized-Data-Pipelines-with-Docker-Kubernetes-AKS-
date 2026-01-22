@@ -1,6 +1,20 @@
 # -Containerized-Data-Pipelines-with-Docker-Kubernetes-AKS-
 This case study demonstrates how I containerized data pipelines using Docker and deployed them to Kubernetes (AKS) to achieve consistent environments, scalable execution, and CI/CD-driven deployments. The focus is on running reliable batch and microservice-based data workloads in a cloud-native way.
 
+# Containerized Data Pipelines with Docker & Kubernetes (AKS)
+
+This project demonstrates how data pipelines can be containerized using Docker and deployed to Kubernetes (AKS) for consistent execution, scalability, and CI/CD automation.
+
+## Key Capabilities
+- Dockerized Python ETL pipelines
+- Kubernetes batch jobs and scheduled workloads
+- Stateless microservice deployments
+- CI/CD-driven container builds
+
+## Tech Stack
+Docker | Kubernetes (AKS) | Python | GitHub Actions | Azure
+
+
 🎯 Business Problem
 
 Data pipelines were:
