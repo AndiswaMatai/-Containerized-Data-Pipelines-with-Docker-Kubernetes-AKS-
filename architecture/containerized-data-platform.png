@@ -1,0 +1,17 @@
+[ Source Systems ]
+      |
+      |  (Transactions / Events)
+      v
+[ Kafka / Event Stream ]
+      |
+      v
+[ Kubernetes (AKS) ]
+   ├── Stream Consumer Pods
+   │      |
+   │      v
+   │  Near Real-Time Storage
+   │
+   └── Batch ETL Jobs (CronJobs)
+          |
+          v
+     Analytics / Reporting Layer
