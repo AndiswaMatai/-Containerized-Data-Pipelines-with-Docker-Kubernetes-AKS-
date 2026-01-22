@@ -1,0 +1,25 @@
+🔐 Data Security, Privacy & Governance
+
+Containerized workloads run with least-privilege access
+
+Sensitive configuration managed via:
+
+Environment variables
+
+Kubernetes Secrets
+
+Data pipelines designed to:
+
+Avoid hardcoded credentials
+
+Encrypt data in transit and at rest (cloud-native services)
+
+Supports regulatory alignment with:
+
+PCI DSS (secure handling of transaction data)
+
+SOC 2 (access control, auditability)
+
+GDPR (data minimisation and controlled processing)
+
+The platform design enables auditable, secure, and compliant data processing suitable for regulated financial environments.
