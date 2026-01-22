@@ -14,6 +14,20 @@ This project demonstrates how data pipelines can be containerized using Docker a
 ## Tech Stack
 Docker | Kubernetes (AKS) | Python | GitHub Actions | Azure
 
+## Event-Driven Data Architecture (Fintech Use Case)
+
+This project also demonstrates an event-driven data pipeline using a Kafka-style messaging pattern.
+
+### Use Case
+- Real-time transaction events (payments, settlements)
+- Near-real-time ingestion for analytics and monitoring
+- Batch pipelines for reconciliation and regulatory reporting
+
+### Capabilities
+- Streaming consumers deployed on Kubernetes
+- Scalable, stateless processing
+- Batch and streaming workloads running side by side
+
 
 🎯 Business Problem
 
