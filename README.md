@@ -125,3 +125,14 @@ Python
 CI/CD (GitHub Actions / Azure DevOps)
 
 Azure Cloud Services
+
+![Architecture Diagram](architecture/containerized-data-platform.png)
+
+
+🧠 Architecture & Design Approach
+
+This platform is designed to support both real-time and batch data processing patterns commonly found in fintech environments. The architecture separates concerns between ingestion, processing, and analytics, while using containerization to ensure portability and consistency across environments.
+
+Event-driven pipelines handle near real-time transaction data using streaming consumers deployed on Kubernetes, enabling scalable and resilient processing. Batch pipelines are scheduled independently for reconciliation, reporting, and regulatory workloads, ensuring accuracy and traceability.
+
+Kubernetes provides workload orchestration, scalability, and fault tolerance, while Docker ensures reproducible runtime environments. CI/CD pipelines automate build and deployment processes, reducing operational risk and accelerating delivery.
