@@ -1,138 +1,182 @@
-# -Containerized-Data-Pipelines-with-Docker-Kubernetes-AKS-
-This case study demonstrates how I containerized data pipelines using Docker and deployed them to Kubernetes (AKS) to achieve consistent environments, scalable execution, and CI/CD-driven deployments. The focus is on running reliable batch and microservice-based data workloads in a cloud-native way.
+# Containerized Data Platform with Docker & Kubernetes (AKS)
 
-# Containerized Data Pipelines with Docker & Kubernetes (AKS)
+## Overview
+This repository showcases a cloud-native data platform built using Docker and Kubernetes (AKS) to support both batch and event-driven data pipelines. The solution demonstrates how modern data engineering practices can be applied to fintech-style workloads, with a strong focus on scalability, reliability, automation, and governance.
 
-This project demonstrates how data pipelines can be containerized using Docker and deployed to Kubernetes (AKS) for consistent execution, scalability, and CI/CD automation.
+The platform is designed to handle real-time transaction events alongside scheduled batch processing for reconciliation, reporting, and regulatory use cases.
 
-## Key Capabilities
-- Dockerized Python ETL pipelines
-- Kubernetes batch jobs and scheduled workloads
-- Stateless microservice deployments
-- CI/CD-driven container builds
+---
 
-## Tech Stack
-Docker | Kubernetes (AKS) | Python | GitHub Actions | Azure
+## Business Problem
+Traditional data pipelines often suffer from:
+- Environment inconsistencies between development and production
+- Manual and error-prone deployments
+- Limited scalability for growing transaction volumes
+- Poor support for real-time data processing
 
-## Event-Driven Data Architecture (Fintech Use Case)
+In regulated environments such as fintech, these issues increase operational risk and slow down decision-making.
 
-This project also demonstrates an event-driven data pipeline using a Kafka-style messaging pattern.
+---
 
-### Use Case
-- Real-time transaction events (payments, settlements)
-- Near-real-time ingestion for analytics and monitoring
-- Batch pipelines for reconciliation and regulatory reporting
+## Solution Summary
+This project implements a containerized data platform that:
+- Uses **Docker** to package data pipelines into reproducible runtime environments
+- Leverages **Kubernetes (AKS)** to orchestrate, scale, and monitor workloads
+- Supports **both batch and event-driven (streaming) data pipelines**
+- Integrates with **CI/CD pipelines** for automated builds and deployments
+- Applies security and governance principles suitable for regulated industries
 
-### Capabilities
-- Streaming consumers deployed on Kubernetes
-- Scalable, stateless processing
-- Batch and streaming workloads running side by side
+---
 
+## Architecture Overview
 
-🎯 Business Problem
+### High-Level Design
+- **Event-driven pipelines** handle near real-time transaction data
+- **Batch pipelines** perform scheduled reconciliation, reporting, and regulatory processing
+- **Kubernetes** manages workload execution, scaling, and fault tolerance
+- **CI/CD** automates container builds and deployments
 
-Data pipelines were:
-
-Environment-dependent (worked locally but failed in higher environments)
-
-Difficult to scale and schedule reliably
-
-Manually deployed, slowing down delivery and increasing risk
-
-The business needed a repeatable, automated, and cloud-ready execution model for data workloads.
-
-🛠️ Solution Implemented
-Docker
-
-Built Docker images for:
-
-Python-based ETL pipelines
-
-Data ingestion and transformation services
-
-Standardized runtime environments across:
-
-Local development
-
-CI/CD pipelines
-
-Cloud execution
-
-Externalized configuration using environment variables and secrets
-
-Kubernetes (AKS)
-
-Deployed Docker images to Azure Kubernetes Service (AKS)
-
-Implemented:
-
-Batch jobs for scheduled data processing
-
-Stateless microservices for ingestion workloads
-
-Used Kubernetes features such as:
-
-Pods and Deployments
-
-CronJobs for scheduled pipelines
-
-Resource requests and limits for stability
-
-Monitored workloads using logs and pod health checks
-
-🔄 CI/CD Integration
-
-Integrated Docker builds into CI/CD pipelines
-
-Automated:
-
-Image builds and versioning
-
-Deployment to AKS environments
-
-Enabled faster, safer releases with minimal manual intervention
-
-📈 Outcomes & Impact
-
-Consistent pipeline execution across all environments
-
-Reduced deployment issues caused by environment drift
-
-Improved scalability and reliability of data workloads
-
-Faster development-to-production cycle
-
-🧠 Key Skills Demonstrated
-
-Docker & containerization
-
-Kubernetes (AKS) workload deployment and scheduling
-
-Cloud-native data pipeline execution
-
-CI/CD automation
-
-Production-focused data engineering
-
-🔧 Tech Stack
-
-Docker
-
-Kubernetes (AKS)
-
-Python
-
-CI/CD (GitHub Actions / Azure DevOps)
-
-Azure Cloud Services
-
+### Architecture Diagram
 ![Architecture Diagram](architecture/containerized-data-platform.png)
 
 
-🧠 Architecture & Design Approach
+## Repository Structure
 
-This platform is designed to support both real-time and batch data processing patterns commonly found in fintech environments. The architecture separates concerns between ingestion, processing, and analytics, while using containerization to ensure portability and consistency across environments.
+k8s-docker-data-pipelines/
+│
+├── docker/
+│ ├── Dockerfile
+│ └── Dockerfile-stream
+│
+├── pipelines/
+│ ├── etl_job.py
+│ ├── stream_consumer.py
+│ └── requirements.txt
+│
+├── k8s/
+│ ├── batch-job.yaml
+│ ├── cronjob.yaml
+│ ├── deployment.yaml
+│ └── stream-deployment.yaml
+│
+├── ci-cd/
+│ └── github-actions.yml
+│
+└── README.md
+---
 
-Event-driven pipelines handle near real-time transaction data using streaming consumers deployed on Kubernetes, enabling scalable and resilient processing. Batch pipelines are scheduled independently for reconciliation, reporting, and regulatory workloads, ensuring accuracy and traceability.
 
-Kubernetes provides workload orchestration, scalability, and fault tolerance, while Docker ensures reproducible runtime environments. CI/CD pipelines automate build and deployment processes, reducing operational risk and accelerating delivery.
+---
+
+## Batch Data Pipelines
+
+### Use Case
+Batch pipelines are used for:
+- Daily reconciliation
+- Settlement reporting
+- Financial and operational analytics
+- Regulatory extracts
+
+### Implementation
+- Python-based ETL pipelines packaged in Docker containers
+- Executed as Kubernetes **Jobs** or **CronJobs**
+- Resource limits configured for predictable execution
+- Failures handled via Kubernetes restart policies
+
+---
+
+## Event-Driven Data Pipelines (Fintech Use Case)
+
+### Use Case
+Event-driven pipelines handle:
+- Payment transactions
+- Balance updates
+- Lending and settlement events
+
+These workloads require near real-time ingestion and processing.
+
+### Implementation
+- Kafka-style messaging pattern
+- Stateless stream consumers deployed as Kubernetes **Deployments**
+- Horizontal scaling via replica configuration
+- Designed to run continuously and independently from batch workloads
+
+---
+
+## CI/CD Automation
+
+### Pipeline Capabilities
+- Automated Docker image builds on code changes
+- Versioned container images
+- Automated deployment to Kubernetes environments
+- Reduced manual intervention and deployment risk
+
+CI/CD ensures consistent and repeatable releases across environments.
+
+---
+
+## Security, Privacy & Governance
+
+This platform is designed with regulatory environments in mind:
+
+- Secrets and sensitive configuration managed via:
+  - Environment variables
+  - Kubernetes Secrets
+- No hardcoded credentials in code or images
+- Supports encryption in transit and at rest using cloud-native services
+- Architecture aligns with common regulatory frameworks:
+  - **PCI DSS** – secure handling of transaction data
+  - **SOC 2** – access control and auditability
+  - **GDPR** – data minimisation and controlled processing
+
+---
+
+## Fintech Case Study: Payments & Lending Platform
+
+### Business Context
+A fintech platform processes high volumes of payment and lending transactions that must be ingested in real time, reconciled daily, and reported accurately for operational and regulatory purposes.
+
+### Challenges
+- High-frequency transaction events
+- Near real-time monitoring requirements
+- Daily reconciliation and settlement
+- Strict security and compliance standards
+
+### Solution
+- Streaming pipelines for transaction ingestion
+- Batch pipelines for reconciliation and reporting
+- Containerized execution using Docker
+- Orchestration and scaling using Kubernetes (AKS)
+- Automated CI/CD deployments
+
+### Outcomes
+- Scalable and resilient data processing
+- Improved operational visibility
+- Reduced manual effort
+- Architecture suitable for regulated fintech environments
+
+---
+
+## Key Skills Demonstrated
+- Docker containerization
+- Kubernetes (AKS) workload orchestration
+- Batch and event-driven data architectures
+- CI/CD automation
+- Fintech data platform design
+- Security and governance-aware engineering
+
+---
+
+## Technology Stack
+- Docker
+- Kubernetes (AKS)
+- Python
+- Kafka-style event streaming
+- GitHub Actions / Azure DevOps
+- Azure Cloud Services
+
+---
+
+## Recruiter Summary
+> Designed and implemented a cloud-native data platform supporting both batch and event-driven workloads using Docker and Kubernetes (AKS), with a strong focus on scalability, automation, and regulatory readiness for fintech environments.
+
